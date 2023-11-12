@@ -118,28 +118,33 @@ LIMIT 2;
 -- 番組の視聴数ランキングはエピソードの平均視聴数ランキングとします。
 -- ジャンルごとに視聴数トップの番組に対して、ジャンル名、番組タイトル、エピソード平均視聴数を取得してください。
 -- SQL
-SELECT
-    g.genre_id,
-    g.genre_name,
-    AVG(t.viewership_count) AS avg_view
-FROM
-    time_tables t
-LEFT JOIN
-    programs p ON t.program_id = p.program_id
-LEFT JOIN
-    program_genre pg ON p.program_id = pg.program_id
-LEFT JOIN
-    genres g ON pg.genre_id = g.genre_id
-WHERE
-    t.viewership_count IN 
-        (SELECT
-            MAX(t.viewership_count),
-            g.genre_id
-            GROUP BY
-                g.genre_id
-        )
-GROUP BY
-    g.genre_id
-ORDER BY
-    avg_view DESC;
+-- SELECT
+--     p.program_title,
+--     g.genre_name,
+--     AVG(t.viewership_count) AS av
+-- FROM
+--     genres g
+-- LEFT JOIN
+--     program_genre pg ON g.genre_id = pg.genre_id
+-- LEFT JOIN
+--     programs p ON pg.program_id = p.program_id
+-- LEFT JOIN 
+--     time_tables t ON p.program_id = t.program_id
+-- GROUP BY
+--     g.genre_name
+-- HAVING
+--     AVG(t.viewership_count) = (
+--       SELECT
+--         MAX(AVG(t.viewership_count))
+--       FROM
+--           genres g
+--       LEFT JOIN
+--           program_genre pg ON g.genre_id = pg.genre_id
+--       LEFT JOIN
+--           programs p ON pg.program_id = p.program_id
+--       LEFT JOIN 
+--           time_tables t ON p.program_id = t.program_id
+--       GROUP BY
+--           g.genre_name
+--     );
 -- SQL END
