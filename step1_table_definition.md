@@ -53,6 +53,6 @@
 番組とジャンルの中間テーブル (program_genre)
 | カラム名           | データ型  | NULL  | キー | 初期値 | AUTO INCREMENT |
 |--------------------|----------|-------|-----|--------|-----------------|
-| _genre_id   | INT      |       | PK  |        | YES             |
+| genre_id   | INT      |       | PK  |        | YES             |
 | program_id         | INT      |       | FK  |        |                 |
 | genre_id           | INT      |       | FK  |        |                 |
