@@ -1,0 +1,7 @@
+INSERT INTO seasons (season_title, season_number, episode_total_number) VALUES
+    ('ファンタジー シーズン1', 1, 11),
+    ('ファンタジー シーズン2', 2, 11),
+    ('SF シーズン1', 1, 11),
+    ('SF シーズン2', 2, 11),
+    ('ロボット　シーズン1', 1, 25),
+    ('医療ドラマ　シーズン1', 1, 11);
