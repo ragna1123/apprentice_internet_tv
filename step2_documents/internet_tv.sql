@@ -88,7 +88,13 @@ source ./test_data/load_episodes.dump ;
 source ./test_data/load_genres.dump ;
 source ./test_data/load_programs.dump ;
 source ./test_data/load_seasons.dump ;
-source ./test_data/load_time_tables.dump ;
+source ./test_data/load_tt_anime1.dump ;
+source ./test_data/load_tt_anime2.dump ;
+source ./test_data/load_tt_drama.dump ;
+source ./test_data/load_tt_movie.dump ;
+source ./test_data/load_tt_music.dump ;
+source ./test_data/load_tt_news.dump ;
+source ./test_data/load_tt_sport.dump ;
 
 -- 外部キー設定
 ALTER TABLE programs

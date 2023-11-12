@@ -91,12 +91,12 @@ BETWEEN
 
 -- 5. (advanced) 直近一週間で最も見られた番組が知りたいです。直近一週間に放送された番組の中で、
 -- エピソード視聴数合計トップ2の番組に対して、番組タイトル、視聴数を取得してください
--- 本日 = データの都合上2023-11-13とします
+-- 本日 = データの都合上2023-11-17とします
 -- SQL
 SELECT
+    p.program_id,
     p.program_title,
-    MAX(t.viewership_count) AS max_view,
-    t.timetable_id
+    SUM(t.viewership_count) AS total_view
 FROM
     time_tables t
 LEFT JOIN
@@ -106,15 +106,15 @@ LEFT JOIN
 WHERE
     t.air_time
 BETWEEN
-    '2023-11-08 00:00:00' AND '2023-11-13 00:00:00'
+    '2023-11-10 00:00:00' AND '2023-11-17 00:00:00'
 GROUP BY
-    t.timetable_id
+    p.program_id
 ORDER BY
-    max_view DESC
+    total_view DESC
 LIMIT 2;
 -- SQL END
 
--- 1. (advanced) ジャンルごとの番組の視聴数ランキングを知りたいです。
+-- 6. (advanced) ジャンルごとの番組の視聴数ランキングを知りたいです。
 -- 番組の視聴数ランキングはエピソードの平均視聴数ランキングとします。
 -- ジャンルごとに視聴数トップの番組に対して、ジャンル名、番組タイトル、エピソード平均視聴数を取得してください。
 -- SQL
@@ -131,7 +131,13 @@ LEFT JOIN
 LEFT JOIN
     genres g ON pg.genre_id = g.genre_id
 WHERE
-
+    t.viewership_count IN 
+        (SELECT
+            MAX(t.viewership_count),
+            g.genre_id
+            GROUP BY
+                g.genre_id
+        )
 GROUP BY
     g.genre_id
 ORDER BY
