@@ -42,7 +42,6 @@
 | episode_detail     | TEXT     | OK    |     |        |                 |
 | video_duration     | TIME     |       |     |        |                 |
 | release_date       | DATE     | OK    |     |        |                 |
-| genre_id           | INT      | OK    | FK  |        |                 |
 | season_id          | INT      | OK    | FK  |        |                 |
 
 シーズン (seasons)
